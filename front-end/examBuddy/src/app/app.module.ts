@@ -10,11 +10,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { RepeatedPhrasesComponent } from './repeated-phrases/repeated-phrases.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    RepeatedPhrasesComponent
   ],
   imports: [
     BrowserModule,
