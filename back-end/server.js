@@ -2,39 +2,37 @@ import express from 'express';
 import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
+import cors from 'cors';
 
-// Initialize express
+
 const app = express();
+app.use(cors());
 
-// Set up storage for Multer
+const PORT = process.env.PORT || 3000;
+
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    const uploadsDir = path.join(__dirname, '/uploads');
-    if (!fs.existsSync(uploadsDir)) {
-      fs.mkdirSync(uploadsDir);
+    destination: function(req, file, cb) {
+        cb(null, 'uploads/');
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + '.pdf');
     }
-    cb(null, uploadsDir);
-  },
-  filename: function(req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  }
 });
+
 
 const upload = multer({ storage: storage });
 
-// POST endpoint to handle PDF upload
-app.post('/uploadpdf', upload.single('pdf'), (req, res) => {
-  if (!req.file) {
-    return res.status(400).send('No file uploaded.');
-  }
-  console.log('File received:', req.file);
-  res.send('File uploaded successfully');
+app.post('/uploadpdf', upload.single('files'), (req, res) => {
+    // req.file is the 'pdf' file
+    console.log(req.file);
+    res.send('File uploaded successfully');
 });
 
-// Server Port
-const PORT = process.env.PORT || 3000;
 
-// Start the server
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
