@@ -1,8 +1,10 @@
 const express = require('express');
 const multer = require('multer');
-const app = express();
+const pdfParse = require('pdf-parse');
 const cors = require('cors');
+const fs = require('fs');
 
+const app = express();
 
 app.use(cors());
 
@@ -23,6 +25,18 @@ const upload = multer({ storage: storage });
 app.post('/uploadpdf', upload.single('pdf'), (req, res) => {
     // req.file is the 'pdf' file
     console.log(req.file);
+    let dataBuffer = fs.readFileSync(req.file.path);
+
+    pdfParse(dataBuffer).then(function(data) {
+        // data.text contains the extracted text
+        // Call a function to process this text
+        const pattern = /\b\d+\.\s*(.*?)\s*(?=\b\d+\.|\bPART B\b)/gs;
+        const questions = [...data.text.matchAll(pattern)].map(match => match[1].trim());
+        
+        questions.forEach((question, index) => {
+            console.log(`Question ${index + 1}: ${question}`);
+        });
+    });
     res.send('File uploaded successfully');
 });
 
