@@ -1,5 +1,5 @@
-// palmInt.js
-import dotenv from 'dotenv';
+import { processPDFs } from "./pdfProcesssor.js";
+import dotenv from "dotenv";
 dotenv.config();
 import { TextServiceClient } from "@google-ai/generativelanguage";
 import { GoogleAuth } from "google-auth-library";
@@ -12,7 +12,6 @@ const client = new TextServiceClient({
 });
 
 async function generateRepeatedPhrases(text) {
-  
   const prompt = `Find the most repeated phrases in this text. give me the top 5 most repeated phrases. the phrases should be minimum 5 words long. text: ${text}`;
   try {
     const result = await client.generateText({
@@ -21,21 +20,28 @@ async function generateRepeatedPhrases(text) {
         text: prompt,
       },
     });
-    if (result && result[0] && result[0].candidates && result[0].candidates.length > 0) {
+    if (
+      result &&
+      result[0] &&
+      result[0].candidates &&
+      result[0].candidates.length > 0
+    ) {
       const outputText = result[0].candidates[0].output;
       console.log(outputText);
       return outputText;
     } else {
-      console.log('No output text found.');
-      return '';
+      console.log("No output text found.");
+      return "";
     }
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
     throw error;
   }
 }
 
-const sampletext = 'random sentences used for testing this amazing project';
-generateRepeatedPhrases(sampletext);
+const usePDFText = async (combinedText) => {
+  await generateRepeatedPhrases(combinedText);
+};
 
+export { usePDFText };
 export default generateRepeatedPhrases;
