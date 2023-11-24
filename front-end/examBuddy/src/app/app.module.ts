@@ -5,6 +5,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
@@ -20,6 +22,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    HttpClientModule,
     DragDropModule
   ],
   providers: [],

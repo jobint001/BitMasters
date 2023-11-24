@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-file-upload',
@@ -7,21 +9,39 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
   styleUrls: ['./file-upload.component.css']
 })
 export class FileUploadComponent {
-  files: File[] = [];
+  selectedFiles: File[] = [];
 
-  onFileDropped(event: CdkDragDrop<File[]>) {
-    for (let i = 0; i < event.item.data.length; i++) {
-      this.files.push(event.item.data[i]);
+  constructor(private http: HttpClient) {}
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files) return;
+    this.selectedFiles = Array.from(input.files);
+  }
+  deleteFile(index: number): void {
+    this.selectedFiles.splice(index, 1);
+  }
+  onFileDropped(event: any): void {
+    const files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
+    for (let i = 0; i < files.length; i++) {
+      this.selectedFiles.push(files[i]);
     }
   }
 
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (!input.files) return;
-    Array.from(input.files).forEach(file => this.files.push(file));
-  }
+  onUpload(): void {
+    if (this.selectedFiles.length === 0) return;
 
-  deleteFile(index: number): void {
-    this.files.splice(index, 1);
+    const formData = new FormData();
+    this.selectedFiles.forEach(file => {
+      formData.append('files', file, file.name);
+    });
+
+    // Replace 'your-backend-url' with your actual Node.js backend URL.
+    const uploadUrl = 'http://localhost:3000/uploadpdf';
+
+    this.http.post(uploadUrl, formData).subscribe({
+      next: (response) => console.log(response),
+      error: (error) => console.error(error)
+    });
   }
 }

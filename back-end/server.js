@@ -1,50 +1,40 @@
-const express = require('express');
-const multer = require('multer');
-const pdfParse = require('pdf-parse');
-const cors = require('cors');
-const fs = require('fs');
+import express from 'express';
+import multer from 'multer';
+import fs from 'fs';
+import path from 'path';
 
+// Initialize express
 const app = express();
 
-app.use(cors());
-
-const PORT = process.env.PORT || 3000;
-
+// Set up storage for Multer
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, 'uploads/');
-    },
-    filename: function(req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + '.pdf');
+  destination: function(req, file, cb) {
+    const uploadsDir = path.join(__dirname, '/uploads');
+    if (!fs.existsSync(uploadsDir)) {
+      fs.mkdirSync(uploadsDir);
     }
+    cb(null, uploadsDir);
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
 });
-
 
 const upload = multer({ storage: storage });
 
+// POST endpoint to handle PDF upload
 app.post('/uploadpdf', upload.single('pdf'), (req, res) => {
-    // req.file is the 'pdf' file
-    console.log(req.file);
-    let dataBuffer = fs.readFileSync(req.file.path);
-
-    pdfParse(dataBuffer).then(function(data) {
-        // data.text contains the extracted text
-        // Call a function to process this text
-        const pattern = /\b\d+\.\s*(.*?)\s*(?=\b\d+\.|\bPART B\b)/gs;
-        const questions = [...data.text.matchAll(pattern)].map(match => match[1].trim());
-        
-        questions.forEach((question, index) => {
-            console.log(`Question ${index + 1}: ${question}`);
-        });
-    });
-    res.send('File uploaded successfully');
+  if (!req.file) {
+    return res.status(400).send('No file uploaded.');
+  }
+  console.log('File received:', req.file);
+  res.send('File uploaded successfully');
 });
 
+// Server Port
+const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
-
+// Start the server
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
