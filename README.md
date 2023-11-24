@@ -1,4 +1,0 @@
-# BitMasters
-
-## Codecrypt hackathon
-
