@@ -27,8 +27,8 @@ const upload = multer({ storage: storage });
 app.post("/uploadpdf", upload.array("files", 10), async (req, res) => {
   try {
     const combinedText = await processPDFs(req.files);
-    await usePDFText(combinedText); // Pass the combined text to usePDFText
-    res.send("Files processed successfully.");
+    const text = await usePDFText(combinedText); // Pass the combined text to usePDFText
+    res.json(text);
   } catch (error) {
     console.error("Error:", error);
     res.status(500).send("Error in processing the PDF files");

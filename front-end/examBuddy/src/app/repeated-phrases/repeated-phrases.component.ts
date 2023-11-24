@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-repeated-phrases',
@@ -6,10 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./repeated-phrases.component.css']
 })
 export class RepeatedPhrasesComponent implements OnInit {
-  @Input() phrases: string[] = []; // Initialize with an empty array
+  phrases: string[] = [];
 
-  constructor() { }
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
+    this.dataService.phrases$.subscribe((phrases) => {
+      this.phrases = phrases;
+    });
   }
 }

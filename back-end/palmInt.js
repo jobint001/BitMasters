@@ -27,7 +27,7 @@ async function generateRepeatedPhrases(text) {
       result[0].candidates.length > 0
     ) {
       const outputText = result[0].candidates[0].output;
-      console.log(outputText);
+      
       return outputText;
     } else {
       console.log("No output text found.");
@@ -40,7 +40,7 @@ async function generateRepeatedPhrases(text) {
 }
 
 const usePDFText = async (combinedText) => {
-  await generateRepeatedPhrases(combinedText);
+  return await  generateRepeatedPhrases(combinedText);
 };
 
 export { usePDFText };

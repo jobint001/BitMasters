@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DataService } from '../shared/data.service';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class FileUploadComponent {
   selectedFiles: File[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private dataService: DataService) {}
+
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -40,7 +42,7 @@ export class FileUploadComponent {
     const uploadUrl = 'http://localhost:3000/uploadpdf';
 
     this.http.post(uploadUrl, formData).subscribe({
-      next: (response) => console.log(response),
+      next: (response) => this.dataService.updatePhrases([JSON.stringify(response, null, 2)]),
       error: (error) => console.error(error)
     });
   }
