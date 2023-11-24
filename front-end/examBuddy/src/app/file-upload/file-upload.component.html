@@ -1,0 +1,19 @@
+<mat-card>
+    <div cdkDropList 
+         (cdkDropListDropped)="onFileDropped($event)" 
+         class="file-drop-zone">
+      <p>Drag & Drop file here or</p>
+      <button mat-stroked-button>
+        <mat-icon>upload</mat-icon> Choose file
+        <input type="file" multiple (change)="onFileSelected($event)" hidden>
+      </button>
+      <p>Maximum upload size 10 MB</p>
+    </div>
+    <div *ngFor="let file of files; let i = index" class="file-item">
+      {{ file.name }}
+      <button mat-icon-button (click)="deleteFile(i)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+  
