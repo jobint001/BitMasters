@@ -1,0 +1,38 @@
+.phrases-container {
+  margin: 20px auto; /* Center the container */
+  padding: 20px;
+  border-radius: 10px; /* Match the border-radius with the file upload component */
+  background-color: #ffffff; /* Match the background color with the file upload component */
+  box-shadow: 0px 10px 20px 0px rgba(93,147,225,0.2); /* Match the box-shadow with the file upload component */
+  max-width: 800px; /* Set a max-width to prevent it from getting too wide on larger screens */
+}
+
+.phrases-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px; /* Add some space below the title */
+  font-size: 24px; /* Increase the font size for the title */
+}
+
+.phrases-container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; /* Remove default margin */
+}
+
+.phrases-container li {
+  background-color: #f8f9fa; /* Light grey background for items */
+  color: #333; /* Dark grey color for text */
+  padding: 15px; /* Increase padding for better spacing */
+  margin-bottom: 10px;
+  border: none; /* Remove borders */
+  border-radius: 5px; /* Slight border-radius for a softer look */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for each item */
+  transition: transform 0.2s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.phrases-container li:hover {
+  background-color: #e9ecef; /* Slightly darker background on hover */
+  transform: translateY(-2px); /* Slight raise effect on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Increased shadow on hover */
+}
