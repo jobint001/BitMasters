@@ -1,17 +1,88 @@
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #f2f2f2; /* Light gray background for contrast */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Style for the file drop zone */
 .file-drop-zone {
-    border: dashed 3px #aaa;
-    border-radius: 5px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  .file-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-  }
-  
-  /* Add more styles here to match the design */
-  
+  border: dashed 3px #5D93E1; /* Softer blue border */
+  border-radius: 10px;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background-color: #fff; /* White background */
+  box-shadow: 0px 10px 20px 0px rgba(93,147,225,0.2); /* Subtle shadow for depth */
+}
+
+/* Hover effect for the drop zone */
+.file-drop-zone:hover {
+  border-color: #3C7DD9; /* Slightly darker blue on hover */
+  box-shadow: 0px 15px 30px 0px rgba(93,147,225,0.3); /* More pronounced shadow on hover */
+}
+
+/* Style for individual file items */
+.file-item {
+  display: block; /* Change to block to stack items vertically */
+  background-color: #E9F4FE; /* Very light blue background for the file item */
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.file-item:hover {
+  background-color: #D8E9FE; /* Slightly darker blue on hover for file item */
+}
+
+/* Add more styles here for fonts and buttons */
+h1, h2, h3, p {
+  color: #333; /* Darker text for better readability */
+  text-align: center;
+  margin-top: 10px;
+}
+
+button {
+  background-color: #5D93E1; /* Matching blue background for buttons */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+button:hover {
+  background-color: #3C7DD9; /* Darker blue on hover for buttons */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for buttons on hover */
+}
+
+/* Input fields styling */
+input[type='file'] {
+  width: calc(100% - 20px);
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input[type='file']:focus {
+  border-color: #5D93E1; /* Highlight input border when focused */
+}

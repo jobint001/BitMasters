@@ -1,0 +1,54 @@
+/* navigation.component.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff; /* White background to match file upload component */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 20px; /* Padding increased for taller navbar */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.navbar-brand {
+  font-size: 2em; /* Increased font size for brand */
+  font-weight: bold;
+  color: #333; /* Dark grey color for contrast */
+}
+
+.nav-items {
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+
+.nav-item {
+  padding: 15px 20px; /* Increased padding for a larger nav-item */
+  text-decoration: none;
+  color: #333; /* Dark grey color to match the brand text */
+  font-size: 1.25em; /* Increased font size for nav items */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-item:hover {
+  background-color: #5D93E1; /* Softer blue for hover state */
+  color: #fff; /* White text color on hover */
+}
+
+/* Additional responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .navbar {
+      flex-direction: column;
+      padding: 20px; /* Maintain the taller navbar on smaller screens */
+  }
+
+  .nav-items {
+      width: 100%; /* Full width nav items on small screens */
+      justify-content: center;
+  }
+
+  .nav-item {
+      text-align: center;
+      padding: 10px 0; /* Adjust padding for vertical layout on small screens */
+      width: 100%; /* Full width nav links on small screens */
+      font-size: 1.25em; /* Ensure font size is maintained on small screens */
+  }
+}
