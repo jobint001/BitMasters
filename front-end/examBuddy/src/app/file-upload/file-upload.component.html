@@ -2,7 +2,7 @@
   <div cdkDropList 
        (cdkDropListDropped)="onFileDropped($event)" 
        class="file-drop-zone" style="text-align: center;">
-    <p style="margin-bottom: 20px;">Drag & Drop file here or</p>
+    <h2 style="margin-bottom: 20px;">Insert Files Below</h2>
     <button mat-stroked-button (click)="fileInput.click()" style="margin-bottom: 10px;">
       <mat-icon>upload</mat-icon> Choose file
     </button>
@@ -13,7 +13,7 @@
         Upload
       </button>
     </div>
-    <p style="margin-top: 20px;">Maximum upload size 10 MB</p>
+    <h3 style="margin-top: 20px;">Maximum upload size 10 MB</h3>
   </div>
   <div *ngFor="let file of selectedFiles; let i = index" class="file-item" style="background-color: #E9F4FE; border-radius: 5px; padding: 10px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center;">
     {{ file.name }}
