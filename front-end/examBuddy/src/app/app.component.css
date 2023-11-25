@@ -1,0 +1,133 @@
+/* Global styles.css */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+/* Reset some basic elements */
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Set a background color for the entire page */
+body {
+  background-color: #f8f9fa; /* Light grey background */
+  color: #333; /* Dark grey color for text */
+  line-height: 1.6;
+}
+
+/* Style the main content area */
+.main-content {
+  padding: 20px;
+}
+
+/* Global link styles */
+a {
+  color: #007bff; /* Bootstrap primary blue */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Navigation bar styles */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* ... other navbar styles ... */
+}
+
+/* Hero section styles */
+.hero {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #e9ecef; /* Light grayish-blue */
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+/* Footer styles */
+footer {
+  background-color: #343a40; /* Bootstrap dark */
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2em;
+  }
+  /* ... other responsive styles ... */
+}
+
+/* Card styles */
+.card {
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eaeaea;
+  padding: 10px 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Ensure button styles are consistent */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Additional styles for interactive elements */
+button:focus,
+a:focus,
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Custom utility classes for padding and margin */
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Add more custom styles as needed */
